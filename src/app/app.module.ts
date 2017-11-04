@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { UserEntryComponent } from './user-entry/user-entry.component';
 import { EntryService } from './entry.service';
 import { EntriesComponent } from './entries/entries.component';
-import {MatButtonModule, MatChipsModule, MatInputModule, MatToolbarModule} from "@angular/material";
+import {MatButtonModule, MatCardModule, MatChipsModule, MatInputModule, MatToolbarModule} from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
@@ -20,6 +20,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     MatButtonModule,
     MatChipsModule,
     MatToolbarModule,
+    MatCardModule,
     BrowserAnimationsModule
   ],
   providers: [EntryService],
