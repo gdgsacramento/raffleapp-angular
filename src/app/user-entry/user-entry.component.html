@@ -1,4 +1,7 @@
 <div>
-  <input #user type="text" placeholder="Your name" />
-  <button (click)="service.addEntry(user.value)">Enter the raffle</button>
+  <mat-form-field class="example-full-width">
+    <input matInput #user placeholder="Your name" />
+  </mat-form-field>
+
+  <button mat-button color="primary" (click)="service.addEntry(user.value)">Enter the raffle</button>
 </div>
