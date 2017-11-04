@@ -1,16 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import {EntryService} from "../entry.service";
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-entries',
   templateUrl: './entries.component.html',
   styleUrls: ['./entries.component.css']
 })
-export class EntriesComponent implements OnInit {
+export class EntriesComponent {
 
-  constructor(private service: EntryService) { }
-
-  ngOnInit() {
-  }
+  @Input()
+  entries;
 
 }

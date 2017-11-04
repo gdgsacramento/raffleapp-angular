@@ -7,12 +7,18 @@ import { EntryService } from './entry.service';
 import { EntriesComponent } from './entries/entries.component';
 import {MatButtonModule, MatCardModule, MatChipsModule, MatInputModule, MatToolbarModule} from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { RaffleService } from './raffle.service';
+import {AngularFireModule} from "angularfire2";
+import {environment} from "../environments/environment";
+import {AngularFireDatabaseModule} from "angularfire2/database-deprecated";
+import { KeysPipe } from './keys.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserEntryComponent,
-    EntriesComponent
+    EntriesComponent,
+    KeysPipe
   ],
   imports: [
     BrowserModule,
@@ -21,9 +27,11 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     MatChipsModule,
     MatToolbarModule,
     MatCardModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule
   ],
-  providers: [EntryService],
+  providers: [EntryService, RaffleService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

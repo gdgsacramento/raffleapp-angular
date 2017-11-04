@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {RaffleService} from "./raffle.service";
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'app-root',
@@ -7,6 +9,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  constructor() {
+  raffles: Observable<any[]>;
+
+  constructor(private service: RaffleService) {
+    this.raffles = service.getRaffles();
   }
 }

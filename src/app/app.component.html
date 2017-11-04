@@ -1,11 +1,13 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div>
-  <mat-toolbar color="primary">Raffle App</mat-toolbar>
-  <mat-card>
-    <mat-card-title>Raffle</mat-card-title>
+  <mat-toolbar color="primary">
+    GDG Sacramento Raffle App
+  </mat-toolbar>
+  <mat-card *ngFor="let raffle of raffles | async">
+    <mat-card-title>{{raffle.name}}</mat-card-title>
     <mat-card-content>
       <app-user-entry></app-user-entry>
-      <app-entries></app-entries>
+      <app-entries [entries]="raffle.participants"></app-entries>
     </mat-card-content>
 
   </mat-card>
