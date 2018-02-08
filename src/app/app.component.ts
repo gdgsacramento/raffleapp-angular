@@ -11,7 +11,7 @@ export class AppComponent {
 
   raffles: Observable<any[]>;
 
-  constructor(private service: RaffleService) {
+  constructor(public service: RaffleService) {
     this.raffles = service.getRaffles();
   }
 }
