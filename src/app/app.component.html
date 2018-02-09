@@ -6,10 +6,17 @@
   <mat-card *ngFor="let raffle of raffles | async">
     <mat-card-title>{{raffle.name}}</mat-card-title>
     <mat-card-content>
-      <app-user-entry></app-user-entry>
+      <app-user-entry [raffle]="raffle"></app-user-entry>
       <app-entries [entries]="raffle.participants"></app-entries>
     </mat-card-content>
-    
+    <button mat-raised-button color="accent" (click)="service.drawRaffle(raffle)">Draw winners</button>
+    <mat-card-content>
+      <mat-list>
+        <mat-list-item *ngFor="let winner of raffle.winners; index as i">
+          {{i+1}} - {{winner}}
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
   </mat-card>
 </div>
 
