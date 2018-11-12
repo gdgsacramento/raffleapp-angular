@@ -1,3 +1,7 @@
+
+[![Build Status](https://travis-ci.org/gdgsacramento/raffleapp-angular.png)](https://travis-ci.org/gdgsacramento/raffleapp-angular)
+
+
 # Raffleapp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.5.0.
