@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {RaffleService} from "./raffle.service";
-import {Observable} from "rxjs";
+import {RaffleService} from './raffle.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -10,8 +10,14 @@ import {Observable} from "rxjs";
 export class AppComponent {
 
   raffles: Observable<any[]>;
+  toolbarClicks = 0;
 
   constructor(public service: RaffleService) {
     this.raffles = service.getRaffles();
+  }
+
+  toolbarClicked() {
+    this.toolbarClicks++;
+    this.service.isAdmin = (this.toolbarClicks === 5);
   }
 }

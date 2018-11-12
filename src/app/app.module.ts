@@ -14,13 +14,15 @@ import {AngularFireModule} from '@angular/fire';
 import {environment} from '../environments/environment';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import { KeysPipe } from './keys.pipe';
+import { NewRaffleComponent } from './new-raffle/new-raffle.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserEntryComponent,
     EntriesComponent,
-    KeysPipe
+    KeysPipe,
+    NewRaffleComponent
   ],
   imports: [
     BrowserModule,

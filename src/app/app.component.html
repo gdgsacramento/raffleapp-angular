@@ -1,15 +1,18 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div>
-  <mat-toolbar color="primary">
+  <mat-toolbar color="primary" (click)="toolbarClicked()">
     GDG Sacramento Raffle App
   </mat-toolbar>
+  <app-new-raffle *ngIf="service.isAdmin"></app-new-raffle>
   <mat-card *ngFor="let raffle of raffles | async">
     <mat-card-title>{{raffle.name}}</mat-card-title>
     <mat-card-content>
       <app-user-entry [raffle]="raffle"></app-user-entry>
       <app-entries [entries]="raffle.participants"></app-entries>
     </mat-card-content>
-    <button mat-raised-button color="accent" (click)="service.drawRaffle(raffle)">Draw winners</button>
+    <button mat-raised-button color="accent" (click)="service.drawRaffle(raffle)" *ngIf="service.isAdmin && ! raffle.drawn">
+      Draw winners
+    </button>
     <mat-card-content>
       <mat-list>
         <mat-list-item *ngFor="let winner of raffle.winners; index as i">

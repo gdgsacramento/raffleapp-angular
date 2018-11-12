@@ -8,6 +8,7 @@ export class RaffleService {
 
   raffles: Observable<any[]>;
   raffleDb: AngularFireList<any>;
+  isAdmin = false;
 
   constructor(public db: AngularFireDatabase) {
     this.raffleDb = db.list('raffles');
@@ -19,6 +20,11 @@ export class RaffleService {
   addEntry(raffle, name) {
     const participantsDb = this.db.list('raffles/' + raffle.key + '/participants');
     participantsDb.push({name : name});
+  }
+
+  createRaffle(name) {
+    const rafflesDb = this.db.list('raffles');
+    rafflesDb.push({name : name});
   }
 
   getRaffles(): Observable<any[]> {
