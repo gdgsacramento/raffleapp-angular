@@ -7,12 +7,12 @@ import { EntriesComponent } from './entries/entries.component';
 import {
   MatButtonModule, MatCardModule, MatChipsModule, MatInputModule, MatListModule,
   MatToolbarModule
-} from "@angular/material";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { RaffleService } from './raffle.service';
-import {AngularFireModule} from "angularfire2";
-import {environment} from "../environments/environment";
-import {AngularFireDatabaseModule} from 'angularfire2/database';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../environments/environment';
+import {AngularFireDatabaseModule} from '@angular/fire/database';
 import { KeysPipe } from './keys.pipe';
 
 @NgModule({

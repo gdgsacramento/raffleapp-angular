@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {RaffleService} from "./raffle.service";
-import {Observable} from "rxjs/Observable";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-root',

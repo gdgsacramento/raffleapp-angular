@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {AngularFireDatabase, AngularFireList} from 'angularfire2/database';
+import {AngularFireDatabase, AngularFireList} from '@angular/fire/database';
+import {map} from 'rxjs/internal/operators';
 
 @Injectable()
 export class RaffleService {
@@ -10,9 +11,9 @@ export class RaffleService {
 
   constructor(public db: AngularFireDatabase) {
     this.raffleDb = db.list('raffles');
-    this.raffles = this.raffleDb.snapshotChanges().map(changes =>  {
-      return changes.map(c => ({key: c.payload.key, ...c.payload.val()}));
-    });
+    this.raffles = this.raffleDb.snapshotChanges().pipe(
+      map(changes =>  changes.map(c => ({key: c.payload.key, ...c.payload.val()})))
+    );
   }
 
   addEntry(raffle, name) {
