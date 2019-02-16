@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {AngularFireDatabase, AngularFireList} from '@angular/fire/database';
 import {map} from 'rxjs/internal/operators';
+import {getValues} from './keys.pipe';
 
 @Injectable()
 export class RaffleService {
@@ -32,6 +33,18 @@ export class RaffleService {
   }
 
   drawRaffle(raffle) {
-    this.raffleDb.update(raffle.key, {drawn: true});
+    console.log(raffle.participants);
+    const names = getValues(raffle.participants).map(participant => participant.name);
+    this.shuffle(names);
+    raffle.winners = names;
+    console.log('Winners:', names);
+  }
+
+  private shuffle<T>(a: T[]): T[] {
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
   }
 }
