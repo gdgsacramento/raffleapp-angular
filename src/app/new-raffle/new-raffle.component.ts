@@ -11,7 +11,9 @@ export class NewRaffleComponent {
   constructor(public service: RaffleService) { }
 
   onClick(name) {
-    this.service.createRaffle(name);
+    if (name && name.length > 0) {
+      this.service.createRaffle(name);
+    }
   }
 
 }

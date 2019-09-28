@@ -1,10 +1,11 @@
-import {Component, Input} from '@angular/core';
+import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {RaffleService} from '../raffle.service';
 
 @Component({
   selector: 'app-user-entry',
   templateUrl: './user-entry.component.html',
-  styleUrls: ['./user-entry.component.css']
+  styleUrls: ['./user-entry.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserEntryComponent {
 
@@ -14,7 +15,9 @@ export class UserEntryComponent {
   raffle;
 
   onClick(name) {
-    this.service.addEntry(this.raffle, name);
+    if (name && name.length > 0) {
+      this.service.addEntry(this.raffle, name);
+    }
   }
 
 }
