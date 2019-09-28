@@ -28,7 +28,8 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 ## Deploying to Firebase
 
-Just run `firebase deploy` to deploy a new version of the app.
+Just run `firebase deploy` to deploy a new version of the app. In case of error, run `firebase login --reauth
+` first.
 
 ## Further help
 
