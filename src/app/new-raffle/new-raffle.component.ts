@@ -12,7 +12,7 @@ export class NewRaffleComponent {
 
   onClick(name) {
     if (name && name.length > 0) {
-      this.service.createRaffle(name);
+      //this.service.createRaffle(name);
     }
   }
 

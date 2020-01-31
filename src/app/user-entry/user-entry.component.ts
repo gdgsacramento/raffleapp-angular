@@ -11,12 +11,9 @@ export class UserEntryComponent {
 
   constructor(public service: RaffleService) { }
 
-  @Input()
-  raffle;
-
   onClick(name) {
     if (name && name.length > 0) {
-      this.service.addEntry(this.raffle, name);
+      this.service.addEntry(name);
     }
   }
 

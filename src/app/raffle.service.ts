@@ -1,43 +1,42 @@
 import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {AngularFireDatabase, AngularFireList} from '@angular/fire/database';
-import {map} from 'rxjs/internal/operators';
+import {map, tap} from 'rxjs/internal/operators';
 import {getValues} from './keys.pipe';
 
 @Injectable()
 export class RaffleService {
 
-  raffles: Observable<any[]>;
-  raffleDb: AngularFireList<any>;
+  participants$: Observable<any[]>;
+  participants: string[];
+  participantsDb: AngularFireList<any>;
   isAdmin = false;
 
   constructor(public db: AngularFireDatabase) {
-    this.raffleDb = db.list('raffles');
-    this.raffles = this.raffleDb.snapshotChanges().pipe(
-      map(changes =>  changes.map(c => ({key: c.payload.key, ...c.payload.val()})))
+    this.participantsDb = this.db.list('participants');
+    this.participants$ = this.participantsDb.valueChanges().pipe(
+      map(entries => entries.map(entry => entry.name)),
+      tap(participants => this.participants = participants)
     );
   }
 
-  addEntry(raffle, name) {
-    const participantsDb = this.db.list('raffles/' + raffle.key + '/participants');
-    participantsDb.push({name : name});
+  addEntry(name: string) {
+    this.participantsDb.push({name : name});
   }
 
-  createRaffle(name) {
-    const rafflesDb = this.db.list('raffles');
-    rafflesDb.push({name : name});
+  resetRaffle() {
+    this.participantsDb.remove();
   }
 
-  getRaffles(): Observable<any[]> {
-    return this.raffles;
+  getParticipants(): Observable<any[]> {
+    return this.participants$;
   }
 
-  drawRaffle(raffle) {
-    console.log(raffle.participants);
-    const names = getValues(raffle.participants).map(participant => participant.name);
-    this.shuffle(names);
-    raffle.winners = names;
-    console.log('Winners:', names);
+  drawRaffle(): string[] {
+    console.log(this.participants);
+    const winners = this.shuffle(this.participants);
+    console.log('Winners:', winners);
+    return winners;
   }
 
   private shuffle<T>(a: T[]): T[] {

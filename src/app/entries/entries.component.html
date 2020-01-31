@@ -2,9 +2,8 @@
   <mat-card-subtitle>Entries</mat-card-subtitle>
   <mat-card-content>
     <mat-chip-list>
-        <mat-chip *ngFor="let entry of entries | keys"
-                  color="primary" selected="true">
-          {{entry.value.name}}
+        <mat-chip *ngFor="let entry of entries | async" color="primary" selected="true">
+          {{entry}}
         </mat-chip>
     </mat-chip-list>
   </mat-card-content>

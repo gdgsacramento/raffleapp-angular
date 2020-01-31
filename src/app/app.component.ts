@@ -9,11 +9,12 @@ import {Observable} from 'rxjs';
 })
 export class AppComponent {
 
-  raffles: Observable<any[]>;
+  participants: Observable<any[]>;
+  winners: string[];
   toolbarClicks = 0;
 
   constructor(public service: RaffleService) {
-    this.raffles = service.getRaffles();
+    this.participants = service.getParticipants();
   }
 
   toolbarClicked() {
